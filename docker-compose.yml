@@ -1,0 +1,49 @@
+version: '3'
+networks:
+  nabi:
+
+services:
+  api-service:
+    command: sh -c 'npm install && node index.js'
+    container_name: api-service
+    image: node:20-alpine
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api-service/:/api:rw
+    working_dir: /api
+    environment:
+      - SERVICE_NAME=api-service
+      - NODE_ID=api-service
+      - NATS_SERVER=localhost:4222
+    restart: always
+    depends_on:
+      - nats
+    networks:
+        - nabi
+
+  telegram-service:
+    command: sh -c 'npm install && node index.js'
+    image: node:20-alpine
+    container_name: telegram-service
+    environment:
+      - SERVICE_NAME=telegram-service
+      - NODE_ID=telegram-service
+      - NATS_URL=nats://nats:4222
+    volumes:
+      - ./telegram-service/:/telegram:rw
+    working_dir: /telegram
+    restart: always
+    depends_on:
+      - nats
+    networks:
+      - nabi
+
+  nats:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+      - "8222:8222" # Опционально, для мониторинга
+    networks:
+      - nabi
