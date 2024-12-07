@@ -5,7 +5,8 @@
 This application is created for beauty salon masters to track their income and keep a schedule and customer data. The wizard can do this on the public part in the personal account of the admin panel, as well as the admin panel is linked to a telegram bot that will notify the wizard of changes and upcoming events
 
 ### Start
-    You can use the "docker compose up -d" command to run the project
+
+You can use the "docker compose up -d" command to run the project
 
 ### Dependencies
 
