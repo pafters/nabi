@@ -1,10 +1,12 @@
 'use strict';
 
-module.exports = {
+import { Context, ServiceSchema } from "moleculer";
+
+const TelegramService: ServiceSchema = {
     version: 1,
     name: 'telegram-service',
     actions: {
-        async sendMessage(ctx) {
+        async sendMessage(ctx: Context) {
             this.logger.info('Telegram Service get new Message -> ', ctx)
             return { message: 'Сообщение пришло' }
         },
@@ -17,3 +19,5 @@ module.exports = {
     async stopped() {
     }
 };
+
+export default TelegramService;

@@ -5,13 +5,17 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.4.0",
+    "dotenv": "^16.4.7",
     "moleculer": "^0.14.20",
     "nats": "^2.28.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node ./node_modules/moleculer/bin/moleculer-runner.js --hot --config ./moleculer.config.ts ./**/*.service.ts"
   },
-  "keywords": [
-    "Moleculer"
-  ]
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "ts-node": "^10.9.2"
+  }
 }
