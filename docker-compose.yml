@@ -38,6 +38,23 @@ services:
       - nats
     networks:
       - nabi
+  
+  user-service:
+    command: sh -c 'npm install && npm run dev'
+    image: node:20-alpine
+    container_name: user-service
+    environment:
+      - SERVICE_NAME=user-service
+      - NODE_ID=user-service
+      - NATS_URL=nats://nats:4222
+    volumes:
+      - ./user-service/:/user:rw
+    working_dir: /user
+    restart: always
+    depends_on:
+      - nats
+    networks:
+      - nabi
 
   nats:
     image: nats:latest

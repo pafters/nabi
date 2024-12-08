@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es6", //или es2018, es2019 и т.д. в зависимости от ваших потребностей
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "outDir": "./dist", // Папка для скомпилированного js кода
+        "strict": true, // Включите строгую проверку типов
+        "skipLibCheck": true, // Пропускает проверку файлов .d.ts библиотек
+        "sourceMap": true, //Генерирует map файлы для отладки
+        "resolveJsonModule": true //Разрешает импортировать json файлы
+    },
+    "include": [
+        "./src/**/*.ts"
+    ] //Путь к вашим ts файлам
+}
